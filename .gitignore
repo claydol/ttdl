@@ -1,2 +1,3 @@
 /beats/*
 .vscode
+.DS_STORE
