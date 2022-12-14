@@ -13,3 +13,5 @@ pip3 install -r requirements.txt
 ```
 ## Note
 - For downloading multiple profiles at a time, put the username for every profile you want to download into [profiles.txt](https://github.com/claydol/ttdl/blob/main/profiles.txt) line by line
+
+![profiles.png](profiles.png)
