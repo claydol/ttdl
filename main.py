@@ -11,14 +11,16 @@ green = '\033[92m'
 grey = '\033[90m'
 yellow = '\033[93m'
 
+folder = "beats" # change this to use custom donwload path
+
 def beatFolderCheck():
-    if (not os.path.exists('beats')): 
-        os.mkdir('beats')
+    if (not os.path.exists(folder)): 
+        os.mkdir(folder)
 
 def artistFolderCheck(name):
     beatFolderCheck()
-    if (not os.path.exists(os.path.join('beats', name))):
-        os.mkdir(os.path.join('beats', name))
+    if (not os.path.exists(os.path.join(folder, name))):
+        os.mkdir(os.path.join(folder, name))
 
 def formatTimestamp(ts: str):
     return (f"{white}{ts[0:4]}-{ts[4:6]}-{ts[6:8]} {ts[8:10]}:{ts[10:12]}:{ts [12:14]}")
@@ -91,7 +93,7 @@ def single(user: str, autosave: bool):
                 beat = requests.get('https://d2lvs3zi8kbddv.cloudfront.net/' + url.strip(), headers=headers)
                 if (beat.status_code == 206):
                     artistFolderCheck(user)
-                    open(os.path.join(os.path.join("beats", user), str(tracks.get(url)).replace("/", "_")) + ".mp3", 'wb').write(beat.content)
+                    open(os.path.join(os.path.join(folder, user), str(tracks.get(url)).replace("/", "_")) + ".mp3", 'wb').write(beat.content)
                     h.stop_and_persist(symbol = f'{green}✔', text = textFormat + f"{green} 206{grey}, downloaded successfully")
                 else:
                     h.stop_and_persist(symbol = f'{red}✖', text = textFormat + f"{red} 404{grey}, deleted from servers")
