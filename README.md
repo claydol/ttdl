@@ -1,5 +1,5 @@
 # TTDL
-Python3 script for downloading privated beats from Traktrain using Wayback Machine scrapes
+Python3 script for downloading private and public beats from Traktrain using Wayback Machine scrapes
 
 ## Required packages
 - bs4
