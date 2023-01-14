@@ -5,6 +5,7 @@ Python3 script for downloading private and public beats from Traktrain using Way
 ```
 pip install -r requirements.txt
 ```
+
 ## Note
 - For downloading multiple profiles at a time, put the username for every profile you want to download into [profiles.txt](https://github.com/claydol/ttdl/blob/main/profiles.txt) line by line
 
