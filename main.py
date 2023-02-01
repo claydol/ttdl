@@ -128,17 +128,30 @@ def multiple():
         print()
     
     return
-    
+
+def archive(user: str):
+    userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0'
+    wb = WaybackMachineSaveAPI("traktrain.com/" + user, userAgent)
+    with Halo(text=f'{purple}saving {white}traktrain.com/' + user, spinner='star', color='white') as h:
+        if (requests.get(wb.save()).status_code == 200):
+            h.stop_and_persist(symbol = f'{green}✔', text = f'{purple}saved {white}traktrain.com/' + user)
+        else:
+            h.stop_and_persist(symbol = str(f'{red}✖'), text = f'{red}uh oh! {white}an error occured :(' + user)
+    return
+
 def menu():
     print(f"{white}[1]{purple} scrape single artist") # scrapes deleted beats for a single artist via username
     print(f"{white}[2]{purple} scrape multiple artists") # scrapes beats for list of users from a file
-    print(f"{white}[3]{purple} exit")
+    print(f"{white}[3]{purple} create a new wayback entry for an artist")
+    print(f"{white}[4]{purple} exit")
 
     option = input(f'\n{white}   > {purple}')
     if (option == '1'):
         single(input(f"\n{white}username: {purple}"), False)
     if (option == '2'):
         multiple()
+    if (option == '3'):
+        archive(input(f"\n{white}username: {purple}"))
     else:
         exit(f'{purple}\ngoodbye :3')
 
