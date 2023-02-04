@@ -11,14 +11,11 @@ green = '\033[92m'
 grey = '\033[90m'
 yellow = '\033[93m'
 
-folder = "beats" # change this to use custom donwload path
-
-def beatFolderCheck():
-    if (not os.path.exists(folder)): 
-        os.mkdir(folder)
+folder = "beats" # change this to use custom donwload path    
 
 def artistFolderCheck(name):
-    beatFolderCheck()
+    if (not os.path.exists(folder)): 
+        os.mkdir(folder)
     if (not os.path.exists(os.path.join(folder, name))):
         os.mkdir(os.path.join(folder, name))
 
@@ -39,22 +36,14 @@ def single(user: str, autosave: bool):
                 print()
             else:
                 option = 'y'
-
+            
             print()
             if (option == 'y'):
-                userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0'
-                wb = WaybackMachineSaveAPI("traktrain.com/" + user, userAgent)
-                with Halo(text=f'{purple}saving {white}traktrain.com/' + user, spinner='star', color='white') as h:
-                    if (requests.get(wb.save()).status_code == 200):
-                        h.stop_and_persist(symbol = f'{green}✔', text = f'{purple}saved {white}traktrain.com/' + user)
-                    else:
-                        h.stop_and_persist(symbol = str(f'{red}✖'), text = f'{red}uh oh! {white}an error occured :(' + user) #.encode('utf-8')
+                save(user)
                 single(user, autosave)
-                return
-            
             else:
                 menu()
-                return
+            return
 
         if (len(archive.split(' ')) > 1):
             link = "https://web.archive.org/web/" + archive.split(' ')[1] + "/" + "traktrain.com/" + user
@@ -100,8 +89,7 @@ def single(user: str, autosave: bool):
     
     else:
         print(f'\n{red}sorry! {grey}this artist has no downloadable beats :(')
-        return
-    
+        
     return
 
 def multiple():
@@ -129,7 +117,7 @@ def multiple():
     
     return
 
-def archive(user: str):
+def save(user: str):
     userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0'
     wb = WaybackMachineSaveAPI("traktrain.com/" + user, userAgent)
     with Halo(text=f'{purple}saving {white}traktrain.com/' + user, spinner='star', color='white') as h:
@@ -142,16 +130,18 @@ def archive(user: str):
 def menu():
     print(f"{white}[1]{purple} scrape single artist") # scrapes deleted beats for a single artist via username
     print(f"{white}[2]{purple} scrape multiple artists") # scrapes beats for list of users from a file
-    print(f"{white}[3]{purple} create a new wayback entry for an artist")
+    print(f"{white}[3]{purple} save a traktrain profile on wayback")
     print(f"{white}[4]{purple} exit")
 
     option = input(f'\n{white}   > {purple}')
     if (option == '1'):
         single(input(f"\n{white}username: {purple}"), False)
-    if (option == '2'):
+    elif (option == '2'):
         multiple()
-    if (option == '3'):
-        archive(input(f"\n{white}username: {purple}"))
+    elif (option == '3'):
+        save(input(f"\n{white}username: {purple}"))
+        print()
+        menu()
     else:
         exit(f'{purple}\ngoodbye :3')
 
