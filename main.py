@@ -11,7 +11,7 @@ green = '\033[92m'
 grey = '\033[90m'
 yellow = '\033[93m'
 
-folder = "beats" # change this to use custom donwload path    
+folder = "beats" # change this to use custom download path    
 
 def artistFolderCheck(name):
     if (not os.path.exists(folder)): 
