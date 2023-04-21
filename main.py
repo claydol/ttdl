@@ -56,7 +56,7 @@ def single(user: str, autosave: bool):
             bs = BeautifulSoup(requests.get(link).content, "html.parser")
             for track in bs.find_all(attrs={"class":["overlay__play play", "overlay__play play ga-test-play"]}):
                 nickname = bs.find(attrs = {"class": "profile-bio__name"})
-                if ((nickname is not None) and (nickname.get_text() in str(track["data-name"]))):
+                if ((nickname is not None) and (nickname.get_text().strip() in str(track["data-name"]).strip())):
                     tracks[track["data-id"]] = track["data-name"].strip()
             h.stop_and_persist(symbol = f'{green}✔{purple}')
 
@@ -144,12 +144,15 @@ def menu():
         menu()
     else:
         exit(f'{purple}\ngoodbye :3')
+try:
+    print(f"{purple}  _____   _____             ___     _    ")
+    print(f"{purple} |_   _| |_   _|    {white}o O O  {purple}|   \\   | |    ")
+    print(f"{purple}   | |     | |     {white}o       {purple}| |) |  | |__  ")
+    print(f"{purple}   |_|     |_|    {white}TT__[O]  {purple}|___/   |____| ")
+    print(f'{white}_|"""""|_|"""""| ' + '{' + f'======|_|"""""|_|"""""|  ')
+    print(f"""{white}"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'  """)
+    print(f"{grey}                         code by @claydol\n")
+    menu()
 
-print(f"{purple}  _____   _____             ___     _    ")
-print(f"{purple} |_   _| |_   _|    {white}o O O  {purple}|   \\   | |    ")
-print(f"{purple}   | |     | |     {white}o       {purple}| |) |  | |__  ")
-print(f"{purple}   |_|     |_|    {white}TT__[O]  {purple}|___/   |____| ")
-print(f'{white}_|"""""|_|"""""| ' + '{' + f'======|_|"""""|_|"""""|  ')
-print(f"""{white}"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'  """)
-print(f"{grey}                         code by @claydol\n")
-menu()
+except:
+    exit(f'{purple}\nscript crashed xP')
