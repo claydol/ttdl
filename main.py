@@ -124,7 +124,7 @@ def save(user: str):
         if (requests.get(wb.save()).status_code == 200):
             h.stop_and_persist(symbol = f'{green}✔', text = f'{purple}saved {white}traktrain.com/' + user)
         else:
-            h.stop_and_persist(symbol = str(f'{red}✖'), text = f'{red}uh oh! {white}an error occured :(' + user)
+            h.stop_and_persist(symbol = str(f'{red}✖'), text = f'{red}uh oh! {white}an error ocurred :(' + user)
     return
 
 def menu():
