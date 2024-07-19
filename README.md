@@ -10,3 +10,8 @@ pip install -r requirements.txt
 - For downloading multiple profiles at a time, put the username for every profile you want to download into [profiles.txt](https://github.com/claydol/ttdl/blob/main/profiles.txt) line by line
 
 ![profiles.png](profiles.png)
+
+## Check these out :)
+https://github.com/ethan-worth/abdl
+
+https://github.com/adithayyil/bsdl
