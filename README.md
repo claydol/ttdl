@@ -15,3 +15,5 @@ pip install -r requirements.txt
 https://github.com/ethan-worth/abdl
 
 https://github.com/adithayyil/bsdl
+
+https://github.com/tim-morriss/pyscrapeTrain
